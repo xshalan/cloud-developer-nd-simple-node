@@ -30,9 +30,9 @@ jobs:
             docker build -t simple-node .
             docker tag simple-node $DOCKER_USERNAME/simple-node:latest
       - run:
-          name: Run after_success
+          name: Run Docker Login
           command: |
-            echo "$DOCKER_PASSWORD" | echo "$DOCKER_USERNAME"
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - deploy:
           name: Push application Docker image
           command: |
